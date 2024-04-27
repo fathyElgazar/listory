@@ -55,5 +55,81 @@
         <h1 class="Project__title">Inbox</h1>
       </main>
     </div>
+
+    <div class="form-container">
+      <form class="project-form">
+        <div>
+          <label class="project-form__label" for="title">Project Title</label>
+
+          <input
+            type="text"
+            id="title"
+            placeholder="Project title"
+            class="project-form__input"
+          />
+        </div>
+        <div>
+          <label for="description" class="project-form__label">
+            Project Description</label
+          >
+          <input
+            type="text"
+            placeholder="Description"
+            id="description"
+            class="project-form__input"
+          />
+        </div>
+
+        <div>
+          <div class="project-form__label">Project priorities</div>
+          <div>
+            <input
+              type="radio"
+              name="priority"
+              id="priority-high"
+              value="High"
+              class="project-form__input--priority"
+            />
+            <label for="priority-high" class="project-form__label--priority">
+              High</label
+            >
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="priority"
+              id="priority-medium"
+              value="High"
+              class="project-form__input--priority"
+            />
+            <label for="priority-medium" class="project-form__label--priority">
+              medium</label
+            >
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="priority"
+              id="priority-low"
+              value="High"
+              class="project-form__input--priority"
+            />
+            <label for="priority-low" class="project-form__label--priority">
+              Low</label
+            >
+          </div>
+        </div>
+        <div>
+          <label for="date" class="project-form__label"> Project date</label>
+          <input type="date" id="description" class="project-form__input" />
+        </div>
+        <div>
+          <textarea class="project-form__textarea" name="notes" id="">
+Notes!</textarea
+          >
+        </div>
+        <button type="submit" class="btn btn-add">Add project</button>
+      </form>
+    </div>
   </body>
 </html>
