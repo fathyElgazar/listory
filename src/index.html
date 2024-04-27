@@ -5,5 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <aside class="aside">
+        <ul class="projects">
+          <li>
+            <button class="projects__default add-project">
+              <svg class="icon icon-add">
+                <use xlink:href="images/sprite.svg#icon-circle-with-plus"></use>
+              </svg>
+
+              Add Project
+            </button>
+          </li>
+          <li>
+            <button class="projects__default">
+              <svg class="icon icon-inbox">
+                <use xlink:href="images/sprite.svg#icon-inbox"></use>
+              </svg>
+              Inbox
+            </button>
+          </li>
+          <li>
+            <button class="projects__default">
+              <svg class="icon icon-calender">
+                <use xlink:href="images/sprite.svg#icon-calendar"></use>
+              </svg>
+              Today
+            </button>
+          </li>
+        </ul>
+        <ul class="projects">
+          <li>
+            <button class="projects__user">
+              <svg class="icon icon-user">
+                <use xlink:href="images/sprite.svg#icon-folder"></use>
+              </svg>
+              Projects
+            </button>
+          </li>
+        </ul>
+        <ul class="projects-priorities">
+          <li class="projects-priorities__priority">High</li>
+          <li class="projects-priorities__priority">Medium</li>
+          <li class="projects-priorities__priority">Low</li>
+        </ul>
+      </aside>
+      <main class="main-todo">
+        <h1 class="Project__title">Inbox</h1>
+      </main>
+    </div>
+  </body>
 </html>
