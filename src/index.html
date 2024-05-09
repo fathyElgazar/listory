@@ -3,21 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo List</title>
+    <link rel="icon" type="image/x-icon" href="images/agenda.png" />
+    <title>Listory</title>
   </head>
   <body>
     <div class="container">
       <aside class="aside">
+        <h1 class="heading-primary">Listory</h1>
         <ul class="projects">
-          <li>
-            <button class="projects__default add-project">
-              <svg class="icon icon-add">
-                <use xlink:href="images/sprite.svg#icon-circle-with-plus"></use>
-              </svg>
-
-              Add Project
-            </button>
-          </li>
           <li>
             <button class="projects__default">
               <svg class="icon icon-inbox">
@@ -35,15 +28,25 @@
             </button>
           </li>
         </ul>
-        <ul class="projects">
-          <li>
+        <ul class="projects user-projects">
+          <li>Projects</li>
+          <li class="add-project__container">
+            <button type="submit" class="btn-add" id="btn-add-project">
+              <svg class="icon icon-add">
+                <use xlink:href="images/sprite.svg#icon-circle-with-plus"></use>
+              </svg>
+            </button>
+            <input class="project-input" placeholder="Add Project" />
+          </li>
+          <!-- <li>
             <button class="projects__user">
+              <span class="btn-delete--project">X</span>
               <svg class="icon icon-user">
                 <use xlink:href="images/sprite.svg#icon-folder"></use>
               </svg>
               Projects
             </button>
-          </li>
+          </li> -->
         </ul>
         <ul class="projects-priorities">
           <li class="projects-priorities__priority">High</li>
@@ -52,45 +55,52 @@
         </ul>
       </aside>
       <main class="main-todo">
-        <h1 class="Project__title">Inbox</h1>
+        <h1 class="Project__title" id="project-title">Inbox</h1>
+        <div class="todos-container">
+          <div class="todo">
+            <h2 class="todo-title">stdy web</h2>
+            <p class="todo-description">stdy web for 6 hours</p>
+          </div>
+        </div>
       </main>
     </div>
 
-    <div class="form-container">
-      <form class="project-form">
+    <!-- TODO FORM -->
+    <div class="form-container show" id="form-container">
+      <form class="todo-form">
         <div>
-          <label class="project-form__label" for="title">Project Title</label>
+          <label class="todo-form__label" for="title">Todo Title</label>
 
           <input
             type="text"
             id="title"
-            placeholder="Project title"
-            class="project-form__input"
+            placeholder="todo title"
+            class="todo-form__input"
           />
         </div>
         <div>
-          <label for="description" class="project-form__label">
-            Project Description</label
+          <label for="description" class="todo-form__label">
+            Todo Description</label
           >
           <input
             type="text"
             placeholder="Description"
             id="description"
-            class="project-form__input"
+            class="todo-form__input"
           />
         </div>
 
         <div>
-          <div class="project-form__label">Project priorities</div>
+          <div class="todo-form__label">Todo priority</div>
           <div>
             <input
               type="radio"
               name="priority"
-              id="priority-high"
+              id="todo-high"
               value="High"
-              class="project-form__input--priority"
+              class="Todo-form__input--priority"
             />
-            <label for="priority-high" class="project-form__label--priority">
+            <label for="priority-high" class="todo-form__label--priority">
               High</label
             >
           </div>
@@ -100,9 +110,9 @@
               name="priority"
               id="priority-medium"
               value="High"
-              class="project-form__input--priority"
+              class="todo-form__input--priority"
             />
-            <label for="priority-medium" class="project-form__label--priority">
+            <label for="priority-medium" class="todo-form__label--priority">
               medium</label
             >
           </div>
@@ -112,23 +122,24 @@
               name="priority"
               id="priority-low"
               value="High"
-              class="project-form__input--priority"
+              class="todo-form__input--priority"
             />
-            <label for="priority-low" class="project-form__label--priority">
+            <label for="priority-low" class="todo-form__label--priority">
               Low</label
             >
           </div>
         </div>
         <div>
-          <label for="date" class="project-form__label"> Project date</label>
-          <input type="date" id="description" class="project-form__input" />
+          <label for="date" class="todo-form__label"> Todo date</label>
+          <input type="date" id="description" class="todo-form__input" />
         </div>
         <div>
-          <textarea class="project-form__textarea" name="notes" id="">
+          <textarea class="todo-form__textarea" name="notes" id="">
 Notes!</textarea
           >
         </div>
-        <button type="submit" class="btn btn-add">Add project</button>
+        <button type="submit" class="btn btn-add">Add Todo</button>
+        <span id="close-form" class="todo-form__close">X</span>
       </form>
     </div>
   </body>
