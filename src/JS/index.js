@@ -1,7 +1,8 @@
 import { differenceInQuartersWithOptions } from 'date-fns/fp';
 import '../sass/main.scss';
-import { de } from 'date-fns/locale';
+import { de, gd } from 'date-fns/locale';
 
+let projects = [];
 // const formContainer = document.getElementById('form-container');
 // const btnCloseForm = document.getElementById('close-form');
 // btnAddProject.addEventListener('click', (e) => {
@@ -11,19 +12,29 @@ import { de } from 'date-fns/locale';
 // btnCloseForm.addEventListener('click', (e) => {
 //   formContainer.classList.toggle('show');
 // });
-
+const projectTitle = document.getElementById('project-title');
 const btnAddProject = document.getElementById('btn-add-project');
 const proName = document.querySelector('.project-input');
-const projects = document.querySelector('.user-projects');
+const userProjectsList = document.querySelector('.user-projects');
+const defaultProjects = document.querySelectorAll('.projects__default');
+const userProjects = document.querySelectorAll('.projects__user');
+let allProjects = [...defaultProjects, ...userProjects];
 
-btnAddProject.addEventListener('click', (event) => {
-  event.preventDefault();
+// Handle project name in the main side
+let projectName = allProjects.forEach((project) => {
+  project.addEventListener('click', (e) => {
+    projectTitle.innerText = project.innerText;
+  });
+});
+
+btnAddProject.addEventListener('click', (e) => {
+  e.preventDefault();
   submitProject();
 });
 
-proName.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-    event.preventDefault(); // Prevent default form submission if Enter is pressed within the input field
+proName.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault(); // Prevent default form submission if Enter is pressed within the input field
     submitProject();
   }
 });
@@ -39,9 +50,10 @@ function submitProject() {
   <use xlink:href="images/sprite.svg#icon-folder"></use>
   </svg>
   ${proName.value}
+  <span class="btn-delete--project">X</span>
   </button>
   
   `;
-  projects.insertAdjacentElement('beforeend', project);
+  userProjectsList.insertAdjacentElement('beforeend', project);
   proName.value = '';
 }
