@@ -4,6 +4,11 @@
   flex-direction: column;
   gap: 3rem;
 }
+
+.heading-primary {
+  font-size: 2.6rem;
+  color: $project-title-color;
+}
 .projects {
   list-style-type: none;
   display: flex;
@@ -24,6 +29,9 @@
     padding: 0.8rem 1.4rem;
     border-radius: 2px;
     transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   &__default:focus,
@@ -38,8 +46,66 @@
 
   &__default:active,
   &__user:active {
+    transform: scale(0.98);
     background-color: $project-background-color-darker;
   }
+
+  &__user--input {
+    background-color: none;
+  }
+
+  &__user {
+    position: relative;
+  }
+
+  &__user:hover .icon-delete {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.icon-delete {
+  margin-left: auto;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.user-projects li:first-child {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: $project-title-color;
+}
+
+.add-project__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1.4rem;
+  border: 1px solid $project-background-color;
+  transition: all 0.3s;
+  border-radius: 2px;
+}
+
+.project-input {
+  background-color: $background-color;
+  width: 100%;
+  border: none;
+  font-size: 1.8rem;
+  color: $project-title-color;
+}
+
+.project-input:focus {
+  outline: none;
+}
+
+.add-project {
+  border: 1px solid $layout-border-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .projects-priorities {
