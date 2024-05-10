@@ -1,21 +1,22 @@
-// BTN Side bar
-.btn-add {
+.btn-add,
+.btn-add-todo,
+.btn {
   background: none;
   transition: all 0.3s;
   border: none;
 }
-.btn-add:focus {
+.btn-add:focus,
+.btn-add-todo:focus {
   outline: none;
 }
 
-.btn-add:active {
+.btn-add:active,
+.btn-add-todo:active {
   scale: (0.95);
 }
 
 // FORM BUTTONS
 .btn {
-  background: none;
-  border: none;
   font-size: 1.8rem;
   font-weight: 600;
   padding: 0.8rem 1.2rem;
@@ -33,4 +34,19 @@
 .btn:hover {
   background-color: $project-background-color-darker;
   color: $background-color;
+}
+
+// Main buttons
+.btn-add-todo {
+  color: $project-title-color;
+  background-color: $project-background-color-dark;
+  padding: 0.6rem 1.4rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  font-size: 2rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
