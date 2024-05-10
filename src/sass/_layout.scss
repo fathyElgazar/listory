@@ -4,8 +4,9 @@
   gap: 4rem;
   max-width: 1200px;
   min-height: 100vh;
+  // transform: translateX(-25%); // IF you want to close side bar
 }
 
 .aside {
-  border-right: 2px solid $font-color;
+  border-right: 2px solid $layout-border-color;
 }
