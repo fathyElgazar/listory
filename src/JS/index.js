@@ -2,16 +2,20 @@ import { differenceInQuartersWithOptions } from 'date-fns/fp';
 import '../sass/main.scss';
 import { de, gd } from 'date-fns/locale';
 
-let projects = [];
-// const formContainer = document.getElementById('form-container');
-// const btnCloseForm = document.getElementById('close-form');
-// btnAddProject.addEventListener('click', (e) => {
-//   formContainer.classList.toggle('show');
-// });
+let projects = {};
 
-// btnCloseForm.addEventListener('click', (e) => {
-//   formContainer.classList.toggle('show');
-// });
+const btnAddTodo = document.getElementById('btn-add-todo');
+const formContainer = document.getElementById('form-container');
+const btnCloseForm = document.getElementById('close-form');
+
+function showForm() {
+  formContainer.classList.toggle('show');
+}
+
+btnAddTodo.addEventListener('click', showForm);
+
+btnCloseForm.addEventListener('click', showForm);
+
 const projectTitle = document.getElementById('project-title');
 const btnAddProject = document.getElementById('btn-add-project');
 const proName = document.querySelector('.project-input');
