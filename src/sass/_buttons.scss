@@ -1,0 +1,36 @@
+// BTN Side bar
+.btn-add {
+  background: none;
+  transition: all 0.3s;
+  border: none;
+}
+.btn-add:focus {
+  outline: none;
+}
+
+.btn-add:active {
+  scale: (0.95);
+}
+
+// FORM BUTTONS
+.btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding: 0.8rem 1.2rem;
+  background-color: $background-color;
+  justify-self: self-start;
+  cursor: pointer;
+  color: $project-title-color;
+  border-radius: 4px;
+  align-self: self-start;
+}
+.btn:active {
+  outline: none;
+}
+
+.btn:hover {
+  background-color: $project-background-color-darker;
+  color: $background-color;
+}
