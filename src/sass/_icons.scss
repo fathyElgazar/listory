@@ -12,3 +12,11 @@
 .btn-add-todo .icon-add {
   fill: $project-title-color;
 }
+
+// Delete project icon
+.icon-delete {
+  margin-left: auto;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s;
+}
