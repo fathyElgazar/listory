@@ -60,9 +60,9 @@ function renderProject() {
 // renderProject();
 
 function submitProject() {
-  proName.value.trim();
-  if (!proName.value) return;
-  const newProject = createProject(proName.value);
+  let projectName = proName.value.trim();
+  if (!projectName) return;
+  const newProject = createProject(projectName);
   projects.push(newProject);
   let project = document.createElement('li');
   project.innerHTML = `
@@ -70,7 +70,7 @@ function submitProject() {
   <svg class="icon icon-user">
   <use xlink:href="images/sprite.svg#icon-folder"></use>
   </svg>
-  ${proName.value}
+  ${projectName}
   <svg class="icon icon-delete">
   <use
     xlink:href="images/sprite.svg#icon-circle-with-minus"
