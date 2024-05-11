@@ -10,17 +10,16 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
-    // new CopyWebpackPlugin({
-    //   patterns: [
-    //     { from: 'src/images', to: 'images' }, // Copy src/images to dist/images
-    //   ],
-    // }),
   ],
   module: {
     rules: [
       {
         test: /\.s[ac]ss$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
       },
     ],
   },
