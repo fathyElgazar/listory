@@ -5,6 +5,11 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
+    open: {
+      app: {
+        name: 'Google Chrome',
+      },
+    },
     static: './src',
   },
 });
