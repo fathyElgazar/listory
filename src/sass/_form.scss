@@ -2,12 +2,15 @@
   position: absolute;
   inset: 0;
   backdrop-filter: blur(5px);
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.3s;
+
+  transition: all 0.4s;
 }
 
-.project-form {
+.form-container.show {
+  visibility: hidden;
+  opacity: 0;
+}
+.todo-form {
   max-width: fit-content;
   padding: 2rem;
   position: absolute;
@@ -46,30 +49,25 @@
     padding: 0.6rem 1rem;
   }
 
-  &::after {
-    content: 'X';
+  &__close {
     color: $project-title-color;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     background-color: $background-color;
     display: inline-block;
     position: absolute;
     top: 5px;
     right: 5px;
     cursor: pointer;
-    padding: 0.6rem 0.8rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 4px;
+    transition: all 0.3s;
   }
-}
 
-.btn {
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  font-weight: 600;
-  padding: 0.8rem 1.2rem;
-  background-color: $background-color;
-  justify-self: self-start;
-  cursor: pointer;
-  color: $project-title-color;
-  border-radius: 4px;
+  &__close:hover {
+    color: $background-color;
+    background-color: $font-color;
+  }
+  &__close:active {
+    scale: (0.95);
+  }
 }
