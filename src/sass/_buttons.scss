@@ -26,14 +26,29 @@
   color: $project-title-color;
   border-radius: 4px;
   align-self: self-start;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn,
+.btn .icon-add {
+  transition: all 0.4s;
+}
+
+.btn .icon-add {
+  fill: $project-title-color;
 }
 .btn:active {
   outline: none;
 }
 
 .btn:hover {
-  background-color: $project-background-color-darker;
+  background-color: $font-color;
   color: $background-color;
+}
+.btn:hover .icon-add {
+  fill: $background-color;
 }
 
 // Main buttons
@@ -49,4 +64,8 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+
+.btn-add-todo:hover {
+  background-color: $project-background-color;
 }
