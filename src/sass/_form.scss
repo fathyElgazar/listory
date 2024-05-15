@@ -10,6 +10,7 @@
   visibility: hidden;
   opacity: 0;
 }
+
 .todo-form {
   max-width: fit-content;
   padding: 2rem;
@@ -22,19 +23,28 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   border-radius: 2px;
+
   &__label,
   &__input,
   &__textarea {
     font-size: 1.8rem;
     display: block;
+    resize: none;
     field-sizing: content;
     color: $background-color;
+
     &--priority {
       font-size: 1.6rem;
       color: $background-color;
       margin-bottom: 0.5rem;
       margin-left: 0.5rem;
     }
+  }
+
+  &__textarea:focus {
+    outline: none;
+    border: 2px solid $background-color;
+
   }
 
   &__label {
@@ -47,6 +57,7 @@
 
   &__textarea {
     padding: 0.6rem 1rem;
+    border: 2px solid transparent;
   }
 
   &__close {
@@ -67,6 +78,7 @@
     color: $background-color;
     background-color: $font-color;
   }
+
   &__close:active {
     scale: (0.95);
   }
