@@ -1,0 +1,155 @@
+.main-todo {
+  padding: 2.5rem 2rem 0 0;
+}
+
+.Project__title {
+  font-size: 2.5rem;
+}
+
+.todos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-left: 4px solid $todo-border-color;
+  padding: 1rem 1.6rem;
+  margin: 2rem 0;
+  background-color: $todo-background-color;
+  border-radius: 4px;
+
+  &__text,
+  &__things {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__text {
+    &--title {
+      font-size: 2rem;
+      color: $todo-title-color;
+      margin-bottom: 0.6rem;
+    }
+
+    &--description {
+      font-size: 1.8rem;
+      color: $font-color;
+      margin-bottom: .6rem;
+    }
+
+    &--notes {
+      background: none;
+      color: $font-color;
+      padding: 0.6rem 1.4rem;
+      width: fit-content;
+      field-sizing: content;
+      font-size: 1.7rem;
+      border: 2px solid $project-background-color;
+      border-radius: 4px;
+      resize: none;
+    }
+
+    &--notes:focus {
+      outline: none;
+      border-color: $font-color;
+    }
+  }
+
+  &__things {
+    &--priority {
+      font-size: 1.8rem;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    &--priority::before {
+      content: "";
+      display: inline-block;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 100%;
+    }
+
+    &--priority.low::before {
+      background-color: $low-priority;
+    }
+
+    &--priority.high::before {
+      background-color: $high-priority;
+    }
+
+    &--priority.medium::before {
+      background-color: $medium-priority;
+    }
+
+
+    &--date {
+      font-size: 1.8rem;
+      margin-bottom: .6rem;
+    }
+
+    &--check-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-left: 3.5rem;
+      margin-bottom: 1.2rem;
+      cursor: pointer;
+      font-size: 2.2rem;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    &--check-container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    &--check-container .checkmark {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: $font-color;
+      border-radius: 2px;
+      transform: translateY(-50%);
+    }
+
+    &--check-container:hover input~.checkmark {
+      background-color: #ccc;
+    }
+
+    &--check-container input:checked~.checkmark {
+      background-color: $background-color;
+    }
+
+    &--check-container .checkmark::after {
+      content: '';
+      position: absolute;
+      display: none;
+    }
+
+    &--check-container input:checked~.checkmark::after {
+      display: block;
+    }
+
+    &--check-container .checkmark::after {
+      left: 9px;
+      top: 5px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+}
