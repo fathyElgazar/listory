@@ -54,21 +54,10 @@
     background-color: none;
   }
 
-  &__user {
-    position: relative;
-  }
-
   &__user:hover .icon-delete {
     visibility: visible;
     opacity: 1;
   }
-}
-
-.icon-delete {
-  margin-left: auto;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.5s;
 }
 
 .user-projects li:first-child {
