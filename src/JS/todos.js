@@ -1,9 +1,9 @@
 "use strict";
 import { mainTodo } from "./index";
-import { projects } from "./projects";
+import { inbox, projects } from "./projects";
 
 function renderTodoForProject(projectId) {
-  const project = projects.find((p) => p.id === projectId);
+  const project = projectId ? projects.find((p) => p.id === projectId) : inbox;
   if (!project) return;
 
   mainTodo.innerHTML = "";
@@ -15,7 +15,6 @@ function renderTodoForProject(projectId) {
 function addTodoElement(title, description, notes) {
   const todoContainer = document.createElement("div");
   todoContainer.innerHTML = `
-
 
         <div class="todos" id="todos">
           <div class="todos__text">

@@ -4,12 +4,17 @@ import {
   projectTitle,
   proName,
   userProjectsList,
+  allProjectsConatiner,
 } from "./index";
 import { renderTodoForProject } from "./todos";
 let projects = [];
 let nextProjectId = 1;
 let currentProjectId = null;
 
+const inbox = {
+  name: "Inbox",
+  todos: [],
+};
 // Get all projects
 function getProjects() {
   const defaultProjects = document.querySelectorAll(".projects__default");
@@ -34,19 +39,30 @@ function renderProject() {
   }
 
   function handleClick(e) {
-    if (e.target.classList.contains("projects__user")) {
-      const projectId = e.target.dataset.projectId;
-      currentProjectId = parseInt(projectId);
-      projectTitle.innerText = e.target.innerText.trim();
-      renderTodoForProject(currentProjectId);
-    } else if (e.target.closest(".icon-delete")) {
+    const target = e.target.closest("button");
+    if (!target) return;
+
+    const isUserProject = target.classList.contains("projects__user");
+    const isDefaultProject = target.classList.contains("projects__default");
+
+    if (isUserProject || isDefaultProject) {
+      const projectId = isUserProject ? target.dataset.projectId : null;
+      currentProjectId = projectId ? parseInt(projectId) : null; // Update current project, set to null for Inbox
+      projectTitle.innerText = target.innerText.trim();
+      renderTodoForProject(currentProjectId); // Render todos for selected project or Inbox
+    }
+    if (e.target.closest(".icon-delete")) {
       deleteProject(e.target.closest(".projects__user"));
-      projectTitle.innerText = "Inbox"; // To be edited to the project itself
+      projectTitle.innerText = "Inbox";
+      currentProjectId = null; // Reset to Inbox
+      renderTodoForProject(null); // Render todos for Inbox
     }
   }
 
   // Add click event listener to projectsContainer
-  projectsContainer.addEventListener("click", handleClick);
+  allProjectsConatiner.forEach((projectContainer) =>
+    projectContainer.addEventListener("click", handleClick),
+  );
 
   // Get all projects
   let projects = getProjects();
@@ -59,7 +75,7 @@ function renderProject() {
   });
 }
 
-// renderProject();
+//renderProject();
 
 function submitProject() {
   let projectName = proName.value.trim();
@@ -116,4 +132,5 @@ export {
   submitProject,
   handleProjectSubmission,
   currentProjectId,
+  inbox,
 };
