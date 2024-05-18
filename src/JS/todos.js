@@ -1,7 +1,18 @@
 "use strict";
 import { mainTodo } from "./index";
+import { projects } from "./projects";
 
-function addTodo(title, description, notes) {
+function renderTodoForProject(projectId) {
+  const project = projects.find((p) => p.id === projectId);
+  if (!project) return;
+
+  mainTodo.innerHTML = "";
+  project.todos.forEach((todo) => {
+    addTodoElement(todo.title, todo.description, todo.notes);
+  });
+}
+
+function addTodoElement(title, description, notes) {
   const todoContainer = document.createElement("div");
   todoContainer.innerHTML = `
 
@@ -30,4 +41,4 @@ function addTodo(title, description, notes) {
   mainTodo.insertAdjacentElement("beforeend", todoContainer);
 }
 
-export { addTodo };
+export { renderTodoForProject, addTodoElement };

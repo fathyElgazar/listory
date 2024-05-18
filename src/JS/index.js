@@ -1,8 +1,13 @@
 import { differenceInQuartersWithOptions } from "date-fns/fp";
 import "../sass/main.scss";
 import { de, gd } from "date-fns/locale";
-import { handleProjectSubmission, renderProject } from "./projects";
-import { addTodo } from "./todos";
+import {
+  handleProjectSubmission,
+  renderProject,
+  currentProjectId,
+  projects,
+} from "./projects";
+import { addTodoElement } from "./todos";
 
 // Related to form todo
 const btnAddTodo = document.getElementById("btn-add-todo");
@@ -18,7 +23,7 @@ const proName = document.querySelector(".project-input");
 const userProjectsList = document.querySelector(".user-projects");
 
 // Related to todos:
-const mainTodo = document.querySelector(".main-todo");
+const mainTodo = document.getElementById("todo-container");
 
 function showForm() {
   formContainer.classList.toggle("show");
@@ -48,8 +53,19 @@ btnSubmitTodo.addEventListener("click", (e) => {
 
   if (!todoTitle.value.trim()) return;
 
+  const currentProject = projects.find((p) => p.id === currentProjectId);
+
+  if (currentProject) {
+    const newTodo = {
+      title: todoTitle.value.trim(),
+      description: todoDescription.value.trim(),
+      notes: todoNotes.value.trim(),
+    };
+    currentProject.todos.push(newTodo);
+
+    addTodoElement(todoTitle.value, todoDescription.value, todoNotes.value);
+  }
   showForm();
-  addTodo(todoTitle.value, todoDescription.value, todoNotes.value);
   todoTitle.value = todoDescription.value = "";
   todoNotes = "Notes:";
 });

@@ -1,17 +1,18 @@
-'use strict';
+"use strict";
 import {
   projectsContainer,
   projectTitle,
   proName,
   userProjectsList,
-} from './index';
-
+} from "./index";
+import { renderTodoForProject } from "./todos";
 let projects = [];
 let nextProjectId = 1;
+let currentProjectId = null;
 
 // Get all projects
 function getProjects() {
-  const defaultProjects = document.querySelectorAll('.projects__default');
+  const defaultProjects = document.querySelectorAll(".projects__default");
   let allProjects = [...defaultProjects];
   return allProjects;
 }
@@ -21,6 +22,7 @@ function createProject(name) {
   return {
     id: nextProjectId++,
     name,
+    todos: [],
   };
 }
 
@@ -31,27 +33,27 @@ function renderProject() {
     return;
   }
 
-  // Remove existing event listeners (if any)
-  // projectsContainer.removeEventListener('click', handleClick);
-
   function handleClick(e) {
-    if (e.target.classList.contains('projects__user')) {
+    if (e.target.classList.contains("projects__user")) {
+      const projectId = e.target.dataset.projectId;
+      currentProjectId = parseInt(projectId);
       projectTitle.innerText = e.target.innerText.trim();
-    } else if (e.target.closest('.icon-delete')) {
-      deleteProject(e.target.closest('.projects__user'));
-      projectTitle.innerText = 'Inbox'; // To be edited to the project itself
+      renderTodoForProject(currentProjectId);
+    } else if (e.target.closest(".icon-delete")) {
+      deleteProject(e.target.closest(".projects__user"));
+      projectTitle.innerText = "Inbox"; // To be edited to the project itself
     }
   }
 
   // Add click event listener to projectsContainer
-  projectsContainer.addEventListener('click', handleClick);
+  projectsContainer.addEventListener("click", handleClick);
 
   // Get all projects
   let projects = getProjects();
 
   // Add click event listeners to individual project elements
   projects.forEach((project) => {
-    project.addEventListener('click', (e) => {
+    project.addEventListener("click", (e) => {
       projectTitle.innerText = project.innerText;
     });
   });
@@ -64,7 +66,7 @@ function submitProject() {
   if (!projectName) return;
   const newProject = createProject(projectName);
   projects.push(newProject);
-  let project = document.createElement('li');
+  let project = document.createElement("li");
   project.innerHTML = `
   <button class="projects__user" data-project-id="${newProject.id}">
   <svg class="icon icon-user">
@@ -79,8 +81,8 @@ function submitProject() {
   </button>
   
   `;
-  userProjectsList.insertAdjacentElement('beforeend', project);
-  proName.value = '';
+  userProjectsList.insertAdjacentElement("beforeend", project);
+  proName.value = "";
 }
 
 // Handle project submission
@@ -107,4 +109,11 @@ function deleteProject(projectButton) {
   }
 }
 
-export { getProjects, renderProject, submitProject, handleProjectSubmission };
+export {
+  projects,
+  getProjects,
+  renderProject,
+  submitProject,
+  handleProjectSubmission,
+  currentProjectId,
+};
