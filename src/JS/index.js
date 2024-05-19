@@ -11,7 +11,7 @@ import {
   saveToLocalStorage,
   renderSavedProjects,
 } from "./projects";
-import { addTodoElement, renderTodoForProject } from "./todos";
+import { markTodo, addTodoElement, renderTodoForProject } from "./todos";
 
 // Related to form todo
 const btnAddTodo = document.getElementById("btn-add-todo");
@@ -38,7 +38,8 @@ function showForm() {
 document.addEventListener("DOMContentLoaded", () => {
   loadFromLocalStorage();
   renderSavedProjects();
-  renderTodoForProject(); // Render the inbox todos by default
+  renderTodoForProject();
+  markTodo();
 });
 
 renderProject();
@@ -87,6 +88,7 @@ btnSubmitTodo.addEventListener("click", (e) => {
       notes: todoNotes.value.trim(),
       priority: todoPriority,
       date: todoDate,
+      completed: false,
     };
     currentProject.todos.push(newTodo);
     addTodoElement(
@@ -96,6 +98,7 @@ btnSubmitTodo.addEventListener("click", (e) => {
       todoDate,
       todoPriority,
     );
+    markTodo();
     saveToLocalStorage();
   }
 
