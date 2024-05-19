@@ -153,3 +153,9 @@
     }
   }
 }
+
+.todos.completed {
+  background-color: $background-color;
+  text-decoration: line-through;
+  opacity: 0.3;
+}
