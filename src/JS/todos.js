@@ -9,7 +9,13 @@ function renderTodoForProject(projectId) {
 
   mainTodo.innerHTML = "";
   project.todos.forEach((todo) => {
-    addTodoElement(todo.title, todo.description, todo.notes);
+    addTodoElement(
+      todo.title,
+      todo.description,
+      todo.notes,
+      todo.date,
+      todo.priority,
+    );
   });
 }
 

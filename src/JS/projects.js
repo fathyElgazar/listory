@@ -7,6 +7,7 @@ import {
   allProjectsConatiner,
 } from "./index";
 import { renderTodoForProject } from "./todos";
+
 let projects = [];
 let nextProjectId = 1;
 let currentProjectId = null;
@@ -15,11 +16,27 @@ const inbox = {
   name: "Inbox",
   todos: [],
 };
-// Get all projects
-function getProjects() {
-  const defaultProjects = document.querySelectorAll(".projects__default");
-  let allProjects = [...defaultProjects];
-  return allProjects;
+
+// Save projects and inbox to localStorage
+function saveToLocalStorage() {
+  localStorage.setItem("projects", JSON.stringify(projects));
+  localStorage.setItem("inbox", JSON.stringify(inbox));
+}
+
+// Load projects and inbox from localStorage
+function loadFromLocalStorage() {
+  const storedProjects = localStorage.getItem("projects");
+  const storedInbox = localStorage.getItem("inbox");
+  if (storedProjects) {
+    projects = JSON.parse(storedProjects);
+    nextProjectId = projects.length
+      ? Math.max(...projects.map((p) => p.id)) + 1
+      : 1;
+  }
+
+  if (storedInbox) {
+    inbox.todos = JSON.parse(storedInbox).todos;
+  }
 }
 
 // Construct Projects
@@ -63,19 +80,26 @@ function renderProject() {
   allProjectsConatiner.forEach((projectContainer) =>
     projectContainer.addEventListener("click", handleClick),
   );
-
-  // Get all projects
-  let projects = getProjects();
-
-  // Add click event listeners to individual project elements
-  projects.forEach((project) => {
-    project.addEventListener("click", (e) => {
-      projectTitle.innerText = project.innerText;
-    });
-  });
 }
 
-//renderProject();
+function renderSavedProjects() {
+  //  userProjectsList.innerHTML = "";
+  projects.forEach((project) => {
+    let projectElement = document.createElement("li");
+    projectElement.innerHTML = `
+      <button class="projects__user" data-project-id="${project.id}">
+        <svg class="icon icon-user">
+          <use xlink:href="images/sprite.svg#icon-folder"></use>
+        </svg>
+        ${project.name}
+        <svg class="icon icon-delete">
+          <use xlink:href="images/sprite.svg#icon-circle-with-minus"></use>
+        </svg>
+      </button>
+    `;
+    userProjectsList.appendChild(projectElement);
+  });
+}
 
 function submitProject() {
   let projectName = proName.value.trim();
@@ -97,8 +121,10 @@ function submitProject() {
   </button>
   
   `;
-  userProjectsList.insertAdjacentElement("beforeend", project);
+
+  userProjectsList.appendChild(project);
   proName.value = "";
+  saveToLocalStorage();
 }
 
 // Handle project submission
@@ -123,14 +149,17 @@ function deleteProject(projectButton) {
   } else {
     // console.error('Project not found');
   }
+  saveToLocalStorage();
 }
 
 export {
   projects,
-  getProjects,
   renderProject,
   submitProject,
   handleProjectSubmission,
   currentProjectId,
   inbox,
+  saveToLocalStorage,
+  loadFromLocalStorage,
+  renderSavedProjects,
 };

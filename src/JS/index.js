@@ -7,8 +7,11 @@ import {
   currentProjectId,
   projects,
   inbox,
+  loadFromLocalStorage,
+  saveToLocalStorage,
+  renderSavedProjects,
 } from "./projects";
-import { addTodoElement } from "./todos";
+import { addTodoElement, renderTodoForProject } from "./todos";
 
 // Related to form todo
 const btnAddTodo = document.getElementById("btn-add-todo");
@@ -30,6 +33,13 @@ const mainTodo = document.getElementById("todo-container");
 function showForm() {
   formContainer.classList.toggle("show");
 }
+
+// Load data from localStorage when the application starts
+document.addEventListener("DOMContentLoaded", () => {
+  loadFromLocalStorage();
+  renderSavedProjects();
+  renderTodoForProject(); // Render the inbox todos by default
+});
 
 renderProject();
 btnAddTodo.addEventListener("click", showForm);
@@ -86,8 +96,9 @@ btnSubmitTodo.addEventListener("click", (e) => {
       todoDate,
       todoPriority,
     );
+    saveToLocalStorage();
   }
-  console.log(currentProject);
+
   showForm();
   todoTitle.value = todoDescription.value = "";
   todoNotes.value = "Notes!";
