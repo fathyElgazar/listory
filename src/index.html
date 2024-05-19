@@ -53,6 +53,7 @@
           </svg>
           Add Todo
         </button>
+        <div class="todo-container" id="todo-container"></div>
       </main>
     </div>
 
@@ -82,7 +83,7 @@
           />
         </div>
 
-        <div>
+        <div class="todo-form__label--priority__container">
           <div class="todo-form__label">Todo priority</div>
           <div>
             <input
@@ -90,7 +91,7 @@
               name="priority"
               id="todo-high"
               value="High"
-              class="Todo-form__input--priority"
+              class="todo-form__input--priority"
             />
             <label for="priority-high" class="todo-form__label--priority">
               High</label
@@ -101,7 +102,7 @@
               type="radio"
               name="priority"
               id="priority-medium"
-              value="High"
+              value="Medium"
               class="todo-form__input--priority"
             />
             <label for="priority-medium" class="todo-form__label--priority">
@@ -113,7 +114,7 @@
               type="radio"
               name="priority"
               id="priority-low"
-              value="High"
+              value="Low"
               class="todo-form__input--priority"
             />
             <label for="priority-low" class="todo-form__label--priority">
@@ -121,9 +122,9 @@
             >
           </div>
         </div>
-        <div>
+        <div class="date-container">
           <label for="date" class="todo-form__label"> Todo date</label>
-          <input type="date" id="description" class="todo-form__input" />
+          <input type="date" id="date" class="todo-form__input" />
         </div>
         <div>
           <textarea class="todo-form__textarea" name="notes" id="">
