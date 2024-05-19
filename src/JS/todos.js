@@ -1,4 +1,5 @@
 "use strict";
+import { format } from "date-fns";
 import { mainTodo } from "./index";
 import { inbox, projects } from "./projects";
 
@@ -12,8 +13,26 @@ function renderTodoForProject(projectId) {
   });
 }
 
-function addTodoElement(title, description, notes) {
+function addTodoElement(title, description, notes, date, priority) {
+  let classPriority;
+
+  switch (priority) {
+    case "High":
+      classPriority = "high";
+      break;
+    case "Medium":
+      classPriority = "medium";
+      break;
+    case "Low":
+      classPriority = "low";
+      break;
+    default:
+      classPriority = "medium";
+  }
+
+  const newDate = format(new Date(date ? date : new Date()), "MM/dd/yyyy");
   const todoContainer = document.createElement("div");
+
   todoContainer.innerHTML = `
 
         <div class="todos" id="todos">
@@ -25,8 +44,8 @@ function addTodoElement(title, description, notes) {
             <textarea class="todos__text--notes">${notes}</textarea>
           </div>
           <div class="todos__things">
-            <p class="todos__things--priority medium">Medium</p>
-            <p class="todos__things--date">24/4/2003</p>
+            <p class="todos__things--priority ${classPriority}" >${priority ? priority : "Medium"}</p>
+            <p class="todos__things--date">${newDate ? newDate : ""}</p>
 
             <label class="todos__things--check-container"
               >Done

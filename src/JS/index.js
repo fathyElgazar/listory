@@ -48,12 +48,23 @@ btnSubmitTodo.addEventListener("click", (e) => {
   e.preventDefault();
 
   let todoTitle = document.getElementById("input-todo-title");
-
   let todoDescription = document.getElementById("input-todo-description");
-
   let todoNotes = document.querySelector(".todo-form__textarea");
+  let todoDate = document.getElementById("date").value;
+  let todoPriority = document.querySelector('[name="priority"]:checked');
+  const radioButtons = document.querySelectorAll(
+    'input[type="radio"][name="priority"]',
+  );
 
   if (!todoTitle.value.trim()) return;
+
+  if (!todoDate) {
+    todoDate = new Date();
+  }
+
+  if (!todoPriority) {
+    todoPriority = "Medium";
+  } else todoPriority = todoPriority.value;
 
   const currentProject = currentProjectId
     ? projects.find((p) => p.id === currentProjectId)
@@ -64,14 +75,29 @@ btnSubmitTodo.addEventListener("click", (e) => {
       title: todoTitle.value.trim(),
       description: todoDescription.value.trim(),
       notes: todoNotes.value.trim(),
+      priority: todoPriority,
+      date: todoDate,
     };
     currentProject.todos.push(newTodo);
-    inbox.todos.push(newTodo);
-    addTodoElement(todoTitle.value, todoDescription.value, todoNotes.value);
+    addTodoElement(
+      todoTitle.value,
+      todoDescription.value,
+      todoNotes.value,
+      todoDate,
+      todoPriority,
+    );
   }
+  console.log(currentProject);
   showForm();
   todoTitle.value = todoDescription.value = "";
-  todoNotes = "Notes:";
+  todoNotes.value = "Notes!";
+  todoDate.value = "";
+  todoPriority = "";
+
+  // Reset Radio buttons
+  radioButtons.forEach((button) => {
+    button.checked = false;
+  });
 });
 
 export {
