@@ -12,7 +12,7 @@
 }
 
 .todo-form {
-  max-width: fit-content;
+  min-width: 500px;
   padding: 2rem;
   position: absolute;
   top: 50%;
@@ -24,6 +24,16 @@
   gap: 2rem;
   border-radius: 2px;
 
+
+  &__label--priority__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label--priority {
+    margin-left: .5rem;
+  }
+
   &__label,
   &__input,
   &__textarea {
@@ -33,11 +43,11 @@
     field-sizing: content;
     color: $background-color;
 
+
     &--priority {
       font-size: 1.6rem;
       color: $background-color;
       margin-bottom: 0.5rem;
-      margin-left: 0.5rem;
     }
   }
 
@@ -82,4 +92,8 @@
   &__close:active {
     scale: (0.95);
   }
+}
+
+.date-container {
+  display: none;
 }
