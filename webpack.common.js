@@ -10,6 +10,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/images', to: 'images' }, // Copy src/images to dist/images
+      ],
+    }),
   ],
   module: {
     rules: [
