@@ -4,7 +4,7 @@
 
 Todo List app in the browser
 
-[![Demo](src/images/listory.jpeg)](https://fathyElgazzar.github.io/listory/)
+[![Demo](src/images/listory.jpeg)](https://gazzaar.github.io/listory/)
 
 ## Features
 
